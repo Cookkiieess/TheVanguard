@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vanguard Laboratory :: Outreach Mirror</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="noise"></div>
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <header class="hero">
+    <div class="hero__badge">Vanguard Laboratory / Public Systems Division</div>
+    <p class="hero__eyebrow">Progress Through Controlled Discovery</p>
+    <h1>Vanguard builds the future through experiments the public will never see.</h1>
+    <p class="hero__lede hero__lede--signal" id="signalClue">
+      4 2 5
+    </p>
+    <div class="hero__actions">
+      <a href="#puzzles" class="button button--primary">Enter Mirror</a>
+      <button class="button button--ghost" id="glitchButton" type="button">Disturb Signal</button>
+    </div>
+    <div class="hero__metrics">
+      <div>
+        <span class="metric__label">Research Stability</span>
+        <strong id="stabilityMetric">93.1%</strong>
+      </div>
+      <div>
+        <span class="metric__label">Active Programs</span>
+        <strong>142 classified</strong>
+      </div>
+      <div>
+        <span class="metric__label">Ethics Position</span>
+        <strong>Internally managed</strong>
+      </div>
+    </div>
+  </header>
+
+  <main id="puzzles" class="layout">
+    <section class="panel panel--wide dossier">
+      <div class="panel__topline">Mirror Notes</div>
+      <div class="dossier__grid">
+        <div>
+          <h2>Innovation requires selective visibility</h2>
+          <p>
+            Vanguard presents itself as a benevolent research institution. The mirror suggests something colder:
+            containment, experimentation, and messaging polished just enough to look philanthropic from a distance.
+          </p>
+        </div>
+        <div class="dossier__note">
+          <span>Public Line</span>
+          <p>
+            Safer worlds. Smarter systems. Necessary compromises.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel panel--wide">
+      <div class="panel__topline">Leaked Artifacts</div>
+      <div class="artifact-grid">
+        <a class="artifact-card artifact-card--decoy" href="maintenance.html">
+          <span class="artifact-card__type">Artifact 1</span>
+          <strong>Artifact 1</strong>
+          <p>Recovered file block.</p>
+        </a>
+        <a class="artifact-card" href="observer.html">
+          <span class="artifact-card__type">Artifact 2</span>
+          <strong>Artifact 2</strong>
+          <p>Recovered file block.</p>
+        </a>
+        <a class="artifact-card artifact-card--decoy" href="donor-kit.html">
+          <span class="artifact-card__type">Artifact 3</span>
+          <strong>Artifact 3</strong>
+          <p>Recovered file block.</p>
+        </a>
+        <a class="artifact-card" href="watch.html">
+          <span class="artifact-card__type">Artifact 4</span>
+          <strong>Artifact 4</strong>
+          <p>Recovered file block.</p>
+        </a>
+        <a class="artifact-card" href="field-guide.html">
+          <span class="artifact-card__type">Artifact 5</span>
+          <strong>Artifact 5</strong>
+          <p>Recovered file block.</p>
+        </a>
+        <a class="artifact-card" href="recovery.html" id="recoveryArtifact">
+          <span class="artifact-card__type">Artifact ?</span>
+          <strong>Artifact ?</strong>
+          <p>Recovered file block.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel__topline">Frequency Lattice</div>
+      <h2>Frequency lattice</h2>
+      <p>
+        The pulse either resolves or it does not.
+      </p>
+
+      <div class="tuner">
+        <label>
+          <span>Band A</span>
+          <input type="range" id="freqA" min="0" max="9" value="0">
+          <strong id="freqALabel">0</strong>
+        </label>
+        <label>
+          <span>Band B</span>
+          <input type="range" id="freqB" min="0" max="9" value="0">
+          <strong id="freqBLabel">0</strong>
+        </label>
+        <label>
+          <span>Band C</span>
+          <input type="range" id="freqC" min="0" max="9" value="0">
+          <strong id="freqCLabel">0</strong>
+        </label>
+      </div>
+
+      <button class="button button--primary" id="tuneButton" type="button">Commit Calibration</button>
+      <div class="response" id="tuneResponse">
+        No alignment yet.
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel__topline">Cartography Leak</div>
+      <h2>Cartography leak</h2>
+      <p>
+        The stars are labeled. The labels mean more than they should.
+      </p>
+
+      <div class="starmap" id="starmap" aria-label="interactive star map"></div>
+      <div class="selection" id="starSelection">Selected sequence: none</div>
+      <div class="response" id="starResponse">
+        The map is quiet.
+      </div>
+    </section>
+
+    <section class="panel panel--wide">
+      <div class="panel__topline">Artifact Interface</div>
+      <div class="board-shell">
+        <div>
+          <h2>Artifact interface</h2>
+          <p>
+            The object remembers motion.
+          </p>
+          <p class="board__hint" id="boardHint">
+            Interface locked.
+          </p>
+          <button class="button button--ghost" id="resetBoard" type="button">Reset Path</button>
+        </div>
+
+        <div class="board-panel">
+          <div class="board" id="board"></div>
+          <div class="response" id="boardResponse">
+            No accepted sequence.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel final-panel" id="finalPanel" hidden>
+      <div class="panel__topline">Recovered Containment Log</div>
+      <h2>The artifacts agree with each other, which is the worst possible sign.</h2>
+      <p class="final-panel__intro">
+        Once the media trail, telemetry trail, and movement trail all line up, the quarantined incident log rebuilds itself.
+      </p>
+      <div class="log-card" id="logCard"></div>
+    </section>
+  </main>
+
+  <template id="logTemplate">
+Vanguard Laboratory detected the signal before the artifact was ever recovered.
+
+It appeared as a repeating pulse - structured, precise, and unnatural.
+
+The source was located and retrieved.
+
+The object resembled a simple board game.
+
+It was not.
+
+During testing, activation caused brief spatial distortion around the lab. Star-mapping systems shifted before stabilizing.
+
+Analysis confirmed the device functions as a navigation system.
+
+Each move generates coordinates and emits a high-energy transmission from its core, designated ZCORE.
+
+Hours after activation, deep-space monitoring systems detected multiple unidentified vessels altering course toward Earth.
+
+All trajectories aligned with the signal.
+
+The vessels match known patterns of Zorgons, a species that navigates by tracking energy emissions.
+
+To them, signals are beacons.
+
+Which means the artifact is not just a device.
+
+It is broadcasting our location.
+
+Containment has been initiated.
+
+Further activation is not recommended.
+-
+ZUHISMCIK
+  </template>
+  <script src="script.js"></script>
+</body>
+</html>

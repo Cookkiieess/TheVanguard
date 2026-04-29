@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Containment Ledger</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="artifact-page">
+  <div class="noise"></div>
+  <div class="artifact-shell">
+    <header class="artifact-header">
+      <div class="panel__topline">Quarantine Copy</div>
+      <h1>Containment Ledger</h1>
+      <p>The mirror keeps rebuilding this page and then refusing to show the record.</p>
+      <nav class="artifact-nav">
+        <a class="artifact-link" href="index.html">Return to Mirror</a>
+        <a class="artifact-link" href="field-guide.html">Open Field Guide</a>
+      </nav>
+    </header>
+
+    <section class="artifact-section terminal-panel">
+      <div class="panel__topline">Restricted Console</div>
+      <div class="terminal">
+        <div class="terminal__output" id="terminalOutput"></div>
+        <form id="terminalForm" class="terminal__form">
+          <span>&gt;</span>
+          <input id="terminalInput" autocomplete="off" spellcheck="false" placeholder="console lock engaged" disabled>
+        </form>
+      </div>
+    </section>
+
+    <section class="artifact-section" id="recoveryLocked">
+      <div class="panel__topline">Ledger State</div>
+      <p>The ledger remains fragmented.</p>
+    </section>
+
+    <section class="artifact-section final-panel" id="finalPanel" hidden>
+      <div class="panel__topline">Recovered Containment Log</div>
+      <h2>The artifacts agree with each other, which is the worst possible sign.</h2>
+      <p class="final-panel__intro">
+        Once the media trail, telemetry trail, and movement trail all line up, the quarantined incident log rebuilds itself.
+      </p>
+      <div class="log-card" id="logCard"></div>
+    </section>
+  </div>
+
+  <template id="logTemplate">
+Vanguard Laboratory detected the signal before the artifact was ever recovered.
+
+It appeared as a repeating pulse - structured, precise, and unnatural.
+
+The source was located and retrieved.
+
+The object resembled a simple board game.
+
+It was not.
+
+During testing, activation caused brief spatial distortion around the lab. Star-mapping systems shifted before stabilizing.
+
+Analysis confirmed the device functions as a navigation system.
+
+Each move generates coordinates and emits a high-energy transmission from its core, designated ZCORE.
+
+Hours after activation, deep-space monitoring systems detected multiple unidentified vessels altering course toward Earth.
+
+All trajectories aligned with the signal.
+
+The vessels match known patterns of Zorgons, a species that navigates by tracking energy emissions.
+
+To them, signals are beacons.
+
+Which means the artifact is not just a device.
+
+It is broadcasting our location.
+
+Containment has been initiated.
+
+Further activation is not recommended.
+
+ZUHISMCIK
+  </template>
+  <script src="script.js"></script>
+</body>
+</html>
