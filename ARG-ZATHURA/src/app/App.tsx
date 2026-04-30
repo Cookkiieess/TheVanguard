@@ -16,6 +16,7 @@ type GameCard = {
   displayNumber: number;
   moveSpaces: number;
   link: string;
+  linkLabel: string;
   unlockCode: string;
 };
 
@@ -98,6 +99,12 @@ const STARFIELD_POINTS = [
   { left: '18%', top: '72%', size: 'h-1.5 w-1.5', delay: 0.95 },
   { left: '52%', top: '76%', size: 'h-1 w-1', delay: 1.05 },
   { left: '71%', top: '10%', size: 'h-1.5 w-1.5', delay: 1.15 },
+  { left: '8%', top: '48%', size: 'h-1 w-1', delay: 1.25 },
+  { left: '30%', top: '82%', size: 'h-1 w-1', delay: 1.35 },
+  { left: '47%', top: '12%', size: 'h-1.5 w-1.5', delay: 1.45 },
+  { left: '63%', top: '52%', size: 'h-1 w-1', delay: 1.55 },
+  { left: '80%', top: '84%', size: 'h-1.5 w-1.5', delay: 1.65 },
+  { left: '94%', top: '34%', size: 'h-1 w-1', delay: 1.75 },
 ] as const;
 
 const DISPLAY_SEQUENCE = [1, 3, 4, 2, 5] as const;
@@ -114,27 +121,32 @@ const MOVE_MAP: Record<(typeof DISPLAY_SEQUENCE)[number], number> = {
 const CARD_UNLOCK_CONFIG = [
   {
     title: 'Card 1',
-    link: 'https://to-level-1',
+    link: 'http://72.61.253.138:3510',
+    linkLabel: 'NEXT LEVEL',
     unlockCode: 'B-CODE',
   },
   {
     title: 'Card 2',
-    link: 'https://to-level-2',
+    link: 'http://72.61.253.138:3300',
+    linkLabel: 'ORBIT GATE',
     unlockCode: 'XNP9',
   },
   {
     title: 'Card 3',
-    link: 'http://127.0.0.1:5501/index.html',
-    unlockCode: 'C49Z',
+    link: 'http://72.61.253.138:3196',
+    linkLabel: 'DEEP SIGNAL',
+    unlockCode: '5962',
   },
   {
     title: 'Card 4',
-    link: 'https://to-level-4',
+    link: 'https://drive.google.com/drive/folders/1lGD9BbdSC29Aocj0j_PjveoPb7UoM6Ze?usp=sharing',
+    linkLabel: 'ARCHIVE KEY',
     unlockCode: 'ASTRONAUT',
   },
   {
     title: 'Card 5',
     link: 'https://drive.google.com/drive/folders/1lxp_yJOpnITZ7apNhYLwRc3XiVnc8f77?usp=sharing',
+    linkLabel: 'FINAL DOOR',
     unlockCode: 'INSANUS',
   },
 ] as const;
@@ -159,6 +171,7 @@ const createDeck = (): GameCard[] =>
     displayNumber,
     moveSpaces: MOVE_MAP[displayNumber],
     link: CARD_UNLOCK_CONFIG[index].link,
+    linkLabel: CARD_UNLOCK_CONFIG[index].linkLabel,
     unlockCode: CARD_UNLOCK_CONFIG[index].unlockCode,
   }));
 
@@ -367,6 +380,13 @@ export default function App() {
         index === cardIndex ? (isMatch ? 'Link unlocked.' : 'Incorrect code.') : entry,
       ),
     );
+    if (isMatch) {
+      setTurnMessage(
+        cardIndex === DISPLAY_SEQUENCE.length - 1
+          ? 'Final link unlocked.'
+          : `Card ${cardIndex + 1} unlocked. Press GO for the next level.`,
+      );
+    }
     setIsCheckingCode(false);
   };
 
@@ -414,7 +434,7 @@ export default function App() {
     });
 
     setIsRolling(false);
-    setTurnMessage(`${player.name} displayed ${finalNumber}. Flight path locked.`);
+    setTurnMessage(`${player.name} displayed ${finalNumber}. Moving ${moveSpaces} spaces.`);
 
     await sleep(250);
     await movePlayer(0, moveSpaces);
@@ -733,9 +753,9 @@ export default function App() {
                             href={currentCard.link}
                             target="_blank"
                             rel="noreferrer"
-                            className="block break-all text-xs font-bold uppercase tracking-[0.16em] text-[#7a3f19] underline underline-offset-2"
+                            className="block text-xs font-bold uppercase tracking-[0.22em] text-[#7a3f19] underline underline-offset-2"
                           >
-                            {currentCard.link}
+                            {currentCard.linkLabel}
                           </a>
                         )}
                       </div>
